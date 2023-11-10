@@ -4,18 +4,17 @@
 
 {% block content %}
 <div class="container mt-4">
-    <h3>Tableau des données d'humidité</h3>
+    <h3>Données JSON d'humidité</h3>
+    <div class="text-center">
+        <a href="http://127.0.0.1:8001/api/humidity-data/" target="_blank">http://127.0.0.1:8001/api/humidity-data/</a>
+    </div>
     <br>
     <div class="row">
         <div class="col-md-4">
             <div class="d-flex align-items-center">
-                <h3 class="mr-3">CLICK BUTTON TO FETCH DATA</h3>
-                <button class="fetchDataButton" id="fetchDataButton1">GET</button>
             </div>
             <div class="container1 scroll-container">
-                <!-- <div class="column"> -->
-                    <pre class="dataContainer" id="dataContainer1"></pre>
-                <!-- </div>        -->
+                <pre class="dataContainer" id="dataContainer1"></pre>
             </div>
         </div>
 
@@ -26,17 +25,14 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    document.getElementById("fetchDataButton1").addEventListener("click", function () {
-        getData("http://127.0.0.1:8001/api/humidity-data/");
-    });
+    let myChart;
 
-    function getData(apiUrl) {
+    function fetchDataAndChart(apiUrl) {
         fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
                 const dataContainer = document.getElementById(`dataContainer1`);
                 dataContainer.textContent = JSON.stringify(data, null, 1);
-
                 updateChart(data);
             });
     }
@@ -79,8 +75,23 @@
                 }
             }
         };
-        new Chart(ctx1, config1);
+
+        if (myChart) {
+            myChart.destroy();
+        }
+
+        myChart = new Chart(ctx1, config1);
     }
+
+    window.onload = function() {
+        fetchDataAndChart("http://127.0.0.1:8001/api/humidity-data/");
+
+        setInterval(function () {
+            fetchDataAndChart("http://127.0.0.1:8001/api/humidity-data/");
+        }, 3000);
+    };
 </script>
+
+
 <br>
 {% endblock %}
