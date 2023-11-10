@@ -31,8 +31,16 @@ canvas {
     background-color: #444;
 }
 
-.container1 {
+/* .container1 {
     display: flex;
+} */
+
+.scroll-container {
+    max-height: 300px; /* Adjust the height as needed */
+    /* max-width: 400px; */
+    overflow-y: auto;
+    border: 1px solid #ddd; /* Add a border for visibility */
+    padding: 10px;
 }
 
 .column {
@@ -49,7 +57,7 @@ canvas {
 .fetchDataButton {
     background-color: #333;
     color: #fff;
-    border: none;
+    border: 2px solid white;
     padding: 10px 20px;
     cursor: pointer;
     margin-bottom: 15px;

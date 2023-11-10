@@ -30,15 +30,15 @@
 
 <script>
     document.getElementById("fetchDataButton1").addEventListener("click", function () {
-        getData(1, "https://reqres.in/api/users?page=2");
+        getData(1, "http://127.0.0.1:8001/api/humidity-data/");
     });
 
     document.getElementById("fetchDataButton2").addEventListener("click", function () {
-        getData(2, "https://reqres.in/api/users?page=3");
+        getData(2, "http://127.0.0.1:8001/api/celsius-data/");
     });
 
     document.getElementById("fetchDataButton3").addEventListener("click", function () {
-        getData(3, "http://127.0.0.1:8000/api/fahrenheit-data/");
+        getData(3, "http://127.0.0.1:8001/api/fahrenheit-data/");
     });
 
     function getData(columnNumber, apiUrl) {
