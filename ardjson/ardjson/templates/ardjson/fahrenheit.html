@@ -1,12 +1,12 @@
-<title>Humidity</title>
+<title>FAHRENHEIT</title>
 
 {% extends 'ardjson/base.html' %}
 
 {% block content %}
 <div class="container mt-4">
-    <h3>Données JSON d'humidité</h3>
+    <h3>Données JSON de fahrenheit</h3>
     <div class="text-center">
-        <a href="http://127.0.0.1:8001/api/humidity-data/" target="_blank">http://127.0.0.1:8001/api/humidity-data/</a>
+        <a href="http://127.0.0.1:8001/api/fahrenheit-data/" target="_blank">http://127.0.0.1:8001/api/fahrenheit-data/</a>
     </div>
     <br>
     <div class="row">
@@ -53,10 +53,10 @@
             labels: hDate,
             datasets: [
                 {
-                    label: 'Humidité',
+                    label: 'Fahrenheit',
                     data: humidity,
-                    borderColor: 'green',
-                    backgroundColor: 'rgba(0, 255, 0, 0.5)',
+                    borderColor: 'yellow',
+                    backgroundColor: 'rgba(255, 255, 0, 0.5)',
                     pointStyle: 'circle',
                     fill: true,
                     pointRadius: 10,

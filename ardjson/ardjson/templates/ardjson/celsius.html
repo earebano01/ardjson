@@ -1,12 +1,12 @@
-<title>Humidity</title>
+<title>CELSIUS</title>
 
 {% extends 'ardjson/base.html' %}
 
 {% block content %}
 <div class="container mt-4">
-    <h3>Données JSON d'humidité</h3>
+    <h3>Données JSON de celsius</h3>
     <div class="text-center">
-        <a href="http://127.0.0.1:8001/api/humidity-data/" target="_blank">http://127.0.0.1:8001/api/humidity-data/</a>
+        <a href="http://127.0.0.1:8001/api/celsius-data/" target="_blank">http://127.0.0.1:8001/api/celsius-data/</a>
     </div>
     <br>
     <div class="row">
@@ -19,7 +19,7 @@
         </div>
 
         <div class="col-md-8">
-            <canvas id="myChart1"></canvas>
+            <canvas id="myChart2"></canvas>
         </div>
     </div>
 </div>
@@ -40,23 +40,23 @@
     }
 
     function updateChart(data) {
-        const humidity = [];
-        const hDate = [];
+        const celsius = [];
+        const cDate = [];
 
         data.forEach(h => {
-            humidity.push(h.humidity);
-            hDate.push(`${h.date} ${h.time}`);
+            celsius.push(h.celsius);
+            cDate.push(`${h.date} ${h.time}`);
         });
 
-        const ctx1 = document.getElementById('myChart1').getContext('2d');
+        const ctx1 = document.getElementById('myChart2').getContext('2d');
         const hum = {
-            labels: hDate,
+            labels: cDate,
             datasets: [
                 {
-                    label: 'Humidité',
-                    data: humidity,
-                    borderColor: 'green',
-                    backgroundColor: 'rgba(0, 255, 0, 0.5)',
+                    label: 'Celsius',
+                    data: celsius,
+                    borderColor: 'red',
+                    backgroundColor: 'rgba(255, 0, 0, 0.5)',
                     pointStyle: 'circle',
                     fill: true,
                     pointRadius: 10,
@@ -72,7 +72,7 @@
                 plugins: {
                     title: {
                         display: true,
-                        text: 'HUMIDITY'
+                        text: 'CELSIUS'
                     }
                 }
             }
@@ -86,10 +86,10 @@
     }
 
     window.onload = function() {
-        fetchDataAndChart("http://127.0.0.1:8001/api/humidity-data/");
+        fetchDataAndChart("http://127.0.0.1:8001/api/celsius-data/");
 
         setInterval(function () {
-            fetchDataAndChart("http://127.0.0.1:8001/api/humidity-data/");
+            fetchDataAndChart("http://127.0.0.1:8001/api/celsius-data/");
         }, 3000);
     };
 </script>

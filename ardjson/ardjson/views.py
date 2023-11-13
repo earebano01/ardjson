@@ -9,3 +9,9 @@ def jsonView(request):
 
 def humidityView(request):
     return render(request, 'ardjson/humidity.html')
+
+def celsiusView(request):
+    return render(request, 'ardjson/celsius.html')
+
+def fahrenheitView(request):
+    return render(request, 'ardjson/fahrenheit.html')
