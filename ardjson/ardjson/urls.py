@@ -11,6 +11,6 @@ urlpatterns = [
     path('json/', views.jsonView, name='json'),    
     path('humidity/', views.humidityView, name='humidity'),
     path('celsius/', views.celsiusView, name='celsius'),    
-    path('fahreneheit/', views.fahrenheitView, name='fahrenheit'),    
+    path('fahrenheit/', views.fahrenheitView, name='fahrenheit'),
 ]
 
