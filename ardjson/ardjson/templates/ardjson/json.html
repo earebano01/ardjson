@@ -1,76 +1,56 @@
-<!-- Définir le titre de la page HTML -->
 <title>JSON</title>
 
-<!-- Étendre le modèle base.html depuis l'application 'ardjson' -->
 {% extends 'ardjson/base.html' %}
 
-<!-- Définir le bloc de contenu -->
 {% block content %}
 
-<!-- Créer un conteneur pour trois colonnes de données -->
 <div class="container1">
-    <!-- Première colonne -->
     <div class="column">
         <h1>URL #1</h1>
-        <!-- Bouton pour déclencher la récupération des données pour l'URL #1 -->
         <button class="fetchDataButton" id="fetchDataButton1">GET</button>
-        <!-- Conteneur pour afficher les données récupérées pour l'URL #1 -->
         <pre class="dataContainer" id="dataContainer1">
             
         </pre>
     </div>
 
-    <!-- Deuxième colonne -->
     <div class="column">
         <h1>URL #2</h1>
-        <!-- Bouton pour déclencher la récupération des données pour l'URL #2 -->
         <button class="fetchDataButton" id="fetchDataButton2">GET</button>
-        <!-- Conteneur pour afficher les données récupérées pour l'URL #2 -->
         <pre class="dataContainer" id="dataContainer2">
             
         </pre>
     </div>
 
-    <!-- Troisième colonne -->
     <div class="column">
         <h1>URL #3</h1>
-        <!-- Bouton pour déclencher la récupération des données pour l'URL #3 -->
         <button class="fetchDataButton" id="fetchDataButton3">GET</button>
-        <!-- Conteneur pour afficher les données récupérées pour l'URL #3 -->
         <pre class="dataContainer" id="dataContainer3">
             
         </pre>
     </div>
 </div>
 
-<!-- Bloc JavaScript -->
 <script>
-    // Ajouter un écouteur d'événements au bouton de la première colonne pour récupérer des données pour l'URL #1
     document.getElementById("fetchDataButton1").addEventListener("click", function () {
         getData(1, "http://127.0.0.1:8001/api/humidity-data/");
     });
 
-    // Ajouter un écouteur d'événements au bouton de la deuxième colonne pour récupérer des données pour l'URL #2
     document.getElementById("fetchDataButton2").addEventListener("click", function () {
         getData(2, "http://127.0.0.1:8001/api/celsius-data/");
     });
 
-    // Ajouter un écouteur d'événements au bouton de la troisième colonne pour récupérer des données pour l'URL #3
     document.getElementById("fetchDataButton3").addEventListener("click", function () {
         getData(3, "http://127.0.0.1:8001/api/fahrenheit-data/");
     });
 
-    // Fonction pour récupérer des données depuis l'URL API spécifiée et mettre à jour le conteneur de données correspondant
     function getData(columnNumber, apiUrl) {
         fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
                 const dataContainer = document.getElementById(`dataContainer${columnNumber}`);
-                // Afficher les données JSON récupérées avec un formatage approprié
                 dataContainer.textContent = JSON.stringify(data, null, 3);
             });
     }
 </script>
 
-<!-- Fermer le bloc de contenu -->
 {% endblock %}
