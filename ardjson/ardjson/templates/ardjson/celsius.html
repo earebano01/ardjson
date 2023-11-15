@@ -43,13 +43,13 @@
         const celsius = [];
         const cDate = [];
 
-        data.forEach(h => {
-            celsius.push(h.celsius);
-            cDate.push(`${h.date} ${h.time}`);
+        data.forEach(c => {
+            celsius.push(c.celsius);
+            cDate.push(`${c.date} ${c.time}`);
         });
 
         const ctx1 = document.getElementById('myChart2').getContext('2d');
-        const hum = {
+        const cel = {
             labels: cDate,
             datasets: [
                 {
@@ -66,7 +66,7 @@
         };
         const config1 = {
             type: 'line',
-            data: hum,
+            data: cel,
             options: {
                 responsive: true,
                 plugins: {
@@ -93,7 +93,5 @@
         }, 3000);
     };
 </script>
-
-
 <br>
 {% endblock %}

@@ -40,21 +40,21 @@
     }
 
     function updateChart(data) {
-        const humidity = [];
-        const hDate = [];
+        const fahrenheit = [];
+        const fDate = [];
 
-        data.forEach(h => {
-            humidity.push(h.humidity);
-            hDate.push(`${h.date} ${h.time}`);
+        data.forEach(f => {
+            fahrenheit.push(f.fahrenheit);
+            fDate.push(`${f.date} ${f.time}`);
         });
 
         const ctx1 = document.getElementById('myChart1').getContext('2d');
-        const hum = {
-            labels: hDate,
+        const fhr = {
+            labels: fDate,
             datasets: [
                 {
                     label: 'Fahrenheit',
-                    data: humidity,
+                    data: fahrenheit,
                     borderColor: 'yellow',
                     backgroundColor: 'rgba(255, 255, 0, 0.5)',
                     pointStyle: 'circle',
@@ -66,13 +66,13 @@
         };
         const config1 = {
             type: 'line',
-            data: hum,
+            data: fhr,
             options: {
                 responsive: true,
                 plugins: {
                     title: {
                         display: true,
-                        text: 'HUMIDITY'
+                        text: 'Fahrenheit'
                     }
                 }
             }
@@ -86,14 +86,12 @@
     }
 
     window.onload = function() {
-        fetchDataAndChart("http://127.0.0.1:8001/api/humidity-data/");
+        fetchDataAndChart("http://127.0.0.1:8001/api/fahrenheit-data/");
 
         setInterval(function () {
-            fetchDataAndChart("http://127.0.0.1:8001/api/humidity-data/");
+            fetchDataAndChart("http://127.0.0.1:8001/api/fahrenheit-data/");
         }, 3000);
     };
 </script>
-
-
 <br>
 {% endblock %}
